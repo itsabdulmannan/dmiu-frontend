@@ -4,11 +4,13 @@ const PeerReviewProcess = () => {
   return (
     <div>
       <div
-        className="bg-cover bg-center min-h-100px flex items-center justify-center"
-        style={{ backgroundImage: `url(${PeerReviewProcessBg})` }}
+        className="bg-cover bg-center min-h-[100px]"
+        style={{
+          backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${PeerReviewProcessBg})`,
+        }}
       >
-        <div className="px-20 py-10">
-          <h1 className="text-4xl text-center font-bold ">
+        <div className="py-10">
+          <h1 className="text-4xl text-center font-semibold text-white">
             Peer Review Process
           </h1>
         </div>

@@ -3,17 +3,17 @@ import PublicationEthicsBg from "../../../assets/images/AboutSectionsBg.jpg";
 import publicationEthicsData from "./data";
 
 const PublicationEthics = () => {
-
-
   return (
     <div>
       <div
-        className="bg-cover bg-center min-h-100px flex items-center justify-center"
-        style={{ backgroundImage: `url(${PublicationEthicsBg})` }}
+        className="bg-cover bg-center min-h-[100px]"
+        style={{
+          backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${PublicationEthicsBg})`,
+        }}
       >
-        <div className="px-20 py-10">
-          <h1 className="text-4xl text-center font-bold">
-          Publication Ethics
+        <div className="py-10">
+          <h1 className="text-4xl text-center font-semibold text-white">
+            Publication Ethics
           </h1>
         </div>
       </div>

@@ -6,15 +6,21 @@ const ReviewersGuidelines = () => {
   return (
     <div>
       {/* Background Section */}
+
       <div
-        className="bg-cover bg-center min-h-100px flex items-center justify-center"
-        style={{ backgroundImage: `url(${ReviewersGuidelinesBg})` }}
+        className="bg-cover bg-center min-h-[100px]"
+        style={{
+          backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${ReviewersGuidelinesBg})`,
+        }}
       >
-        <div className="px-20 py-10">
-          <h1 className="text-4xl text-center font-bold">
+        <div className="py-10">
+          <h1 className="text-4xl text-center font-semibold text-white">
             Reviewers Guidelines
           </h1>
         </div>
+      </div>
+      <div className="h-[50vh]">
+        <h1 className="text-xl text-center font-bold ">Editors Guidelines</h1>
       </div>
 
       {/* Main Content */}
@@ -41,7 +47,7 @@ const ReviewersGuidelines = () => {
           <div className="flex-1 px-0 py-2 md:py-0 md:px-4">
             {ReviewersGuidelinesData.sections.map((section) => (
               <section id={section.id} className="mb-8" key={section.id}>
-               <h2 className="text-2xl font-bold mb-4">{section.title}</h2>
+                <h2 className="text-2xl font-bold mb-4">{section.title}</h2>
                 {section.questions && (
                   <ol className="list-decimal pl-5">
                     {section.questions.map((question, index) => (
@@ -52,7 +58,9 @@ const ReviewersGuidelines = () => {
                   </ol>
                 )}
                 {section.content && (
-                  <p className="text-gray-700 text-justify my-4">{section.content}</p>
+                  <p className="text-gray-700 text-justify my-4">
+                    {section.content}
+                  </p>
                 )}
                 {section.finalDecisionOptions && (
                   <ul className="list-disc pl-5">

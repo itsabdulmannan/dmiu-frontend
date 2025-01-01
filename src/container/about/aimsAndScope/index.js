@@ -1,5 +1,5 @@
 import React from "react";
-import aimsAndScopeData from "./data"; 
+import aimsAndScopeData from "./data";
 import AimsAndScopeBg from "../../../assets/images/AboutSectionsBg.jpg";
 const AimsAndScope = () => {
   const { tableOfContents, sections } = aimsAndScopeData;
@@ -7,13 +7,18 @@ const AimsAndScope = () => {
   return (
     <div>
       <div
-        className="bg-cover bg-center min-h-100px flex items-center justify-center"
-        style={{ backgroundImage: `url(${AimsAndScopeBg})` }}
+        className="bg-cover bg-center min-h-[100px]"
+        style={{
+          backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${AimsAndScopeBg})`,
+        }}
       >
-        <div className="px-20 py-10">
-          <h1 className="text-4xl text-center font-bold ">Aims & Scope</h1>
+        <div className="py-10">
+          <h1 className="text-4xl text-center font-semibold text-white">
+            Aims & Scope
+          </h1>
         </div>
       </div>
+
       <div className="container-global py-4">
         <div className="flex flex-col md:flex-row items-start text-darkText">
           <div className="w-full md:w-1/4 lg:w-1/5 h-fit bg-fadeBg p-4 rounded-md">

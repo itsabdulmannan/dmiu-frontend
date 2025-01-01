@@ -3,7 +3,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import { FiMenu } from "react-icons/fi";
 import MobileNav from "./MobileNav";
 import logo from "../../assets/images/logo.png";
-import { useLocation, useNavigate } from "react-router-dom"; 
+import { useLocation, useNavigate } from "react-router-dom";
 const navItems = [
   { label: "Home", link: "/" },
   {
@@ -35,31 +35,33 @@ const navItems = [
 
 const Navbar = () => {
   const [isSideMenuOpen, setSideMenu] = useState(false);
-  const location = useLocation(); 
-  const navigate = useNavigate(); 
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const openSideMenu = () => setSideMenu(true);
   const closeSideMenu = () => setSideMenu(false);
 
-
   const isActive = (path) => location.pathname === path;
-
 
   const isParentActive = (parent) => {
     if (isActive(parent.link)) return true;
     return parent.children?.some((child) => isActive(child.link));
   };
 
-
   const handleNavigate = (link) => {
-    if (link) navigate(link); 
+    if (link) navigate(link);
   };
 
   return (
     <div className="container-global flex w-full items-center justify-between">
       {/* Left Section */}
       <div className="font-bold text-lg">
-        <img onClick={() => navigate("/")} className="w-[250px] h-[60px] cursor-pointer" src={logo} alt="logo" />
+        <img
+          onClick={() => navigate("/")}
+          className="w-[250px] h-[60px] cursor-pointer"
+          src={logo}
+          alt="logo"
+        />
       </div>
       <section className="flex items-center gap-10">
         {/* Logo */}
@@ -68,7 +70,10 @@ const Navbar = () => {
         {/* Navigation Links */}
         <div className="hidden md:flex items-center gap-4 transition-all">
           {navItems.map((item, index) => (
-            <div key={index} className="relative group px-2 py-2 transition-all">
+            <div
+              key={index}
+              className="relative group px-2 py-2 transition-all"
+            >
               <button
                 onClick={() => handleNavigate(item.link)}
                 className={`flex cursor-pointer text-base items-center gap-2 ${
