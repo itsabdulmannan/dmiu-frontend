@@ -44,4 +44,10 @@ body {
   margin: 0px auto;
   padding: 20px 30px;
 }
+@media screen and (max-width: 768px) {
+  .container-global{
+  padding: 15px;
+
+  }
+}
 

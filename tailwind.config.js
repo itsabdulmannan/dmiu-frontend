@@ -14,7 +14,7 @@ module.exports = {
         darkText: "#212529",
       },
       boxShadow: {
-        primaryBoxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
+        custom: 'rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px',
       },
       fontFamily: {
         nunito: ["Nunito", "sans-serif"],

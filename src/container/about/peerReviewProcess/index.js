@@ -15,7 +15,7 @@ const PeerReviewProcess = () => {
           </h1>
         </div>
       </div>
-      <div className="container-global py-4">
+      <div className="container-global py-4 min-h-screen">
         <div className="flex flex-col md:flex-row items-start text-darkText">
           <div className="w-full md:w-1/4 lg:w-1/5 h-fit bg-fadeBg p-4 rounded-md">
             <h2 className="text-lg font-bold mb-4">Table of Contents</h2>

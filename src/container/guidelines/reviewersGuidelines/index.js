@@ -19,10 +19,6 @@ const ReviewersGuidelines = () => {
           </h1>
         </div>
       </div>
-      <div className="h-[50vh]">
-        <h1 className="text-xl text-center font-bold ">Editors Guidelines</h1>
-      </div>
-
       {/* Main Content */}
       <div className="container-global py-4">
         <div className="flex flex-col md:flex-row items-start text-darkText">

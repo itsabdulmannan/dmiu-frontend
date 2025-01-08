@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import { FiMenu } from "react-icons/fi";
 import MobileNav from "./MobileNav";
 import logo from "../../assets/images/logo.png";
 import { useLocation, useNavigate } from "react-router-dom";
+
 const navItems = [
   { label: "Home", link: "/" },
   {
@@ -22,7 +23,7 @@ const navItems = [
   {
     label: "Guidelines",
     children: [
-      { label: " Authors", link: "/guidelines/authors" },
+      { label: "Authors", link: "/guidelines/authors" },
       { label: "Reviewers", link: "/guidelines/reviewers-guidelines" },
       { label: "Editors", link: "/guidelines/editors" },
     ],
@@ -30,13 +31,20 @@ const navItems = [
   { label: "Editorial Board", link: "/editorial-board" },
   { label: "Inpress", link: "/inpress" },
   { label: "Archives", link: "/archives" },
-  { label: "Submission", link: "#" },
+  { label: "Submission", link: "/submission" },
 ];
 
 const Navbar = () => {
   const [isSideMenuOpen, setSideMenu] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(null); 
   const location = useLocation();
   const navigate = useNavigate();
+
+  const dropdownRef = useRef(null); 
+  const menuRef = useRef(null); 
+  const goToLoginPage = () => {
+    navigate("/login");
+  };
 
   const openSideMenu = () => setSideMenu(true);
   const closeSideMenu = () => setSideMenu(false);
@@ -50,6 +58,29 @@ const Navbar = () => {
 
   const handleNavigate = (link) => {
     if (link) navigate(link);
+  };
+
+  const toggleDropdown = (index) => {
+    setOpenDropdown(openDropdown === index ? null : index); 
+  };
+
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+     
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target) &&
+          menuRef.current && !menuRef.current.contains(event.target)) {
+        setOpenDropdown(null); 
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const handleDropdownLinkClick = (link) => {
+    setOpenDropdown(null);
+    handleNavigate(link);
   };
 
   return (
@@ -75,7 +106,13 @@ const Navbar = () => {
               className="relative group px-2 py-2 transition-all"
             >
               <button
-                onClick={() => handleNavigate(item.link)}
+                onClick={() => {
+                  if (item.children) {
+                    toggleDropdown(index); // Toggle dropdown on click
+                  } else {
+                    handleNavigate(item.link); // Navigate if no children
+                  }
+                }}
                 className={`flex cursor-pointer text-base items-center gap-2 ${
                   isParentActive(item)
                     ? "bg-secondary px-4 py-2 text-white rounded-md"
@@ -84,7 +121,11 @@ const Navbar = () => {
               >
                 <span>{item.label}</span>
                 {item.children && (
-                  <IoIosArrowDown className="rotate-180 transition-all group-hover:rotate-0" />
+                  <IoIosArrowDown
+                    className={`transition-all ${
+                      openDropdown === index ? "rotate-180" : "rotate-0"
+                    }`}
+                  />
                 )}
                 <span
                   className={`absolute bottom-0 left-0 w-0 h-[2px] bg-secondary transition-all duration-300 group-hover:w-full ${
@@ -94,12 +135,15 @@ const Navbar = () => {
               </button>
 
               {/* Dropdown */}
-              {item.children && (
-                <div className="absolute left-3 top-10 hidden w-auto whitespace-nowrap flex-col gap-1 rounded-lg bg-white py-3 shadow-md transition-all group-hover:flex">
+              {item.children && openDropdown === index && (
+                <div
+                  ref={dropdownRef}
+                  className="absolute left-3 top-12 w-auto whitespace-nowrap flex-col gap-1 rounded-lg bg-white py-3 shadow-md transition-all"
+                >
                   {item.children.map((child, idx) => (
                     <button
                       key={idx}
-                      onClick={() => handleNavigate(child.link)}
+                      onClick={() => handleDropdownLinkClick(child.link)} // Handle click on link
                       className={`flex cursor-pointer items-center py-1 pl-6 pr-8 ${
                         isActive(child.link)
                           ? "text-secondaryText"
@@ -118,17 +162,14 @@ const Navbar = () => {
 
       {/* Right Section */}
       <section className="hidden md:flex items-center gap-8">
-        <button className="relative text-base text-primaryText transition-all group">
+        <button onClick={goToLoginPage} className="relative text-base text-primaryText transition-all group">
           Login
           <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-secondary transition-all duration-300 group-hover:w-full"></span>
         </button>
       </section>
 
       {/* Mobile Menu Icon */}
-      <FiMenu
-        onClick={openSideMenu}
-        className="cursor-pointer text-4xl md:hidden"
-      />
+      <FiMenu onClick={openSideMenu} className="cursor-pointer text-4xl md:hidden" />
     </div>
   );
 };
