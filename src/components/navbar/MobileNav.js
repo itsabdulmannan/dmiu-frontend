@@ -12,8 +12,7 @@ const navItems = [
       { label: "Abstracting / Indexing", link: "/about/abstract-indexing" },
       { label: "Peer Review Process", link: "/about/peer-review-process" },
       {
-        label: "Article Processing Charges",
-        link: "/about/article-processing-charges",
+        label: "Article Processing Charges", link: "/about/article-processing-charges",
       },
       { label: "Publication Ethics", link: "/about/publication-ethics" },
     ],

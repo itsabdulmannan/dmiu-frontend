@@ -48,8 +48,8 @@ const Home = () => {
           <h2 className="text-2xl font-bold text-center mb-6 text-secondaryText">
             {journalProfile.title}
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-darkText">
-            <section className="flex flex-col gap-2 col-span-2">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-darkText">
+            <section className="flex flex-col gap-2 md:col-span-3">
               <p className="text-justify leading-relaxed tracking-wide">
                 {journalProfile.description1}
               </p>

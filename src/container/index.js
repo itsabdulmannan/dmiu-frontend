@@ -18,10 +18,12 @@ import Login from "./login";
 import Signup from "./signUp";
 import Submission from "./submission";
 import NewSubmission from "./newSubmission";
+import Setting from "./setiing";
+import ResetPassword from "./reset-password";
 
 const AppRoutes = () => {
   const location = useLocation();
-  const isLoginRoute = location.pathname === "/login" || location.pathname === "/signup";
+  const isLoginRoute = location.pathname === "/login" || location.pathname === "/signup" || location.pathname === "/reset-password";
   return (
     <div>
       {!isLoginRoute && <Navbar />}
@@ -40,10 +42,13 @@ const AppRoutes = () => {
         <Route path="/inpress" Component={Inpress} />
         <Route path="/submission" Component={Submission} />
         <Route path="/submission/new" Component={NewSubmission} />
+        <Route path="/setting" Component={Setting} />
+
+        
 
         <Route path="/login" Component={Login} />
         <Route path="/signup" Component={Signup} />
-
+        <Route path="/reset-password" Component={ResetPassword}/>
       </Routes>
       {!isLoginRoute && <Footer />}
     </div>

@@ -4,6 +4,7 @@ import { FiMenu } from "react-icons/fi";
 import MobileNav from "./MobileNav";
 import logo from "../../assets/images/logo.png";
 import { useLocation, useNavigate } from "react-router-dom";
+import useOutsideClick from "../../hooks/index";
 
 const navItems = [
   { label: "Home", link: "/" },
@@ -36,12 +37,13 @@ const navItems = [
 
 const Navbar = () => {
   const [isSideMenuOpen, setSideMenu] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState(null); 
+  const [openDropdown, setOpenDropdown] = useState(null);
   const location = useLocation();
   const navigate = useNavigate();
 
-  const dropdownRef = useRef(null); 
-  const menuRef = useRef(null); 
+  // const dropdownRef = useRef(null);
+  const dropdownRef = useOutsideClick(() => setOpenDropdown(null));
+  const menuRef = useRef(null);
   const goToLoginPage = () => {
     navigate("/login");
   };
@@ -61,16 +63,18 @@ const Navbar = () => {
   };
 
   const toggleDropdown = (index) => {
-    setOpenDropdown(openDropdown === index ? null : index); 
+    setOpenDropdown(openDropdown === index ? null : index);
   };
-
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-     
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target) &&
-          menuRef.current && !menuRef.current.contains(event.target)) {
-        setOpenDropdown(null); 
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target) &&
+        menuRef.current &&
+        !menuRef.current.contains(event.target)
+      ) {
+        setOpenDropdown(null);
       }
     };
 
@@ -99,7 +103,7 @@ const Navbar = () => {
         {isSideMenuOpen && <MobileNav closeSideMenu={closeSideMenu} />}
 
         {/* Navigation Links */}
-        <div className="hidden md:flex items-center gap-4 transition-all">
+        <div className="hidden md:flex items-center gap-3 transition-all">
           {navItems.map((item, index) => (
             <div
               key={index}
@@ -162,14 +166,20 @@ const Navbar = () => {
 
       {/* Right Section */}
       <section className="hidden md:flex items-center gap-8">
-        <button onClick={goToLoginPage} className="relative text-base text-primaryText transition-all group">
+        <button
+          onClick={goToLoginPage}
+          className="w-full flex justify-center cursor-pointer py-2 px-4 bg-secondary text-white rounded-md hover:bg-primary focus:outline-none"
+        >
           Login
           <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-secondary transition-all duration-300 group-hover:w-full"></span>
         </button>
       </section>
 
       {/* Mobile Menu Icon */}
-      <FiMenu onClick={openSideMenu} className="cursor-pointer text-4xl md:hidden" />
+      <FiMenu
+        onClick={openSideMenu}
+        className="cursor-pointer text-4xl md:hidden"
+      />
     </div>
   );
 };

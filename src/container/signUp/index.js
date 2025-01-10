@@ -28,7 +28,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="min-h-[100%] flex flex-col bg-gray-100 overflow-y-auto sm:overflow-hidden">
+    <div className="min-h-[100%] flex flex-col overflow-y-auto sm:overflow-hidden">
       <button
         onClick={goToHome}
         className="text-gray-600 hover:text-gray-800 flex items-center p-2"
@@ -39,13 +39,13 @@ const Signup = () => {
         Back
       </button>
 
-      <div className="flex flex-1 justify-center items-center px-4 ">
-        <div className="w-full lg:w-2/4 p-8 space-y-4 bg-white rounded-lg shadow-custom px-6">
+      <div className="flex flex-1 justify-center items-center px-4 mb-6">
+        <div className="w-full lg:w-2/4  space-y-3 bg-white rounded-lg shadow-custom px-6 py-4">
           <div className="flex justify-center">
-            <img src={Logo} alt="Logo" className="mx-auto w-1/2" />
+            <img cla src={Logo} alt="Logo" className="mx-auto w-[40%] h-[80px]" />
           </div>
           <h3 className="text-xl font-semibold text-center">Sign In</h3>
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-2">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {/* Title */}
               <div className="flex flex-col gap-1">
@@ -304,7 +304,7 @@ const Signup = () => {
             </div>
 
             {/* Reviewer Toggle */}
-            <div className="col-span-2 flex items-center mt-2">
+            {/* <div className="col-span-2 flex items-center mt-2">
               <input
                 type="checkbox"
                 id="reviewer"
@@ -317,13 +317,13 @@ const Signup = () => {
               >
                 Want to become a reviewer?
               </label>
-            </div>
+            </div> */}
 
             {/* Sign Up Button */}
             <div className="col-span-2 mt-4">
               <button
                 type="submit"
-                className="w-full flex justify-center py-2 px-4 bg-secondary text-white rounded-md hover:bg-primary focus:outline-none"
+                className="w-full flex justify-center mt-4 py-2 px-4 bg-secondary text-white rounded-md hover:bg-primary focus:outline-none"
               >
                 Sign Up
               </button>
